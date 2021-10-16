@@ -11,5 +11,6 @@ public class AuthenticationRequest {
 
     private String email;
     private String pass;
+    private String name;
 
 }

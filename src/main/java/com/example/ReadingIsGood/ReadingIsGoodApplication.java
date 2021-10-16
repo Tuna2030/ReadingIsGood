@@ -20,20 +20,20 @@ public class ReadingIsGoodApplication {
 	}
 
 
-	@Bean
-	CommandLineRunner runner(CustomerRepository repository, MongoTemplate mongoTemplate){
-		return args -> {
-			CustomerModel customerModel = new CustomerModel( "Tuna", "tuna@gmail.com","1234" );
-
-			// usingMongoTemplateAndQuery(repository, mongoTemplate, customerModel);
-			repository.findCustomerModelByEmail("tuna@gmail.com").ifPresentOrElse( c -> {
-				System.out.println("Customer already exists!");
-				} ,
-					() -> {
-				System.out.println("Inserting customer...");
-				repository.insert(customerModel);});
-		};
-	}
+//	@Bean
+//	CommandLineRunner runner(CustomerRepository repository, MongoTemplate mongoTemplate){
+//		return args -> {
+//			CustomerModel customerModel = new CustomerModel( "Tuna", "tuna@gmail.com","1234" );
+//
+//			// usingMongoTemplateAndQuery(repository, mongoTemplate, customerModel);
+//			repository.findCustomerModelByEmail("tuna@gmail.com").ifPresentOrElse( c -> {
+//				System.out.println("Customer already exists!");
+//				} ,
+//					() -> {
+//				System.out.println("Inserting customer...");
+//				repository.insert(customerModel);});
+//		};
+//	}
 
 	private void usingMongoTemplateAndQuery(CustomerRepository repository, MongoTemplate mongoTemplate, CustomerModel customerModel) {
 		Query query = new Query();
