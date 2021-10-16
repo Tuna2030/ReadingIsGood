@@ -4,11 +4,14 @@ import com.example.ReadingIsGood.Authentication.AuthenticationRequest;
 import com.example.ReadingIsGood.Authentication.AuthenticationResponse;
 import com.example.ReadingIsGood.Models.CustomerModel;
 import com.example.ReadingIsGood.Repositories.CustomerRepository;
+import com.example.ReadingIsGood.Services.CustomerService;
+import com.example.ReadingIsGood.Utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +24,12 @@ public class AuthenticationController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private CustomerService customerService;
+
+    @Autowired
+    private JwtUtils jwtUtils;
 
     @PostMapping("/register")
     private ResponseEntity<?> registerClient(@RequestBody AuthenticationRequest authenticationRequest){
@@ -52,7 +61,10 @@ public class AuthenticationController {
             return ResponseEntity.ok(new AuthenticationResponse("Error during authentication " + email));
         }
 
-        return ResponseEntity.ok(new AuthenticationResponse("Successful authentication " + email));
+        UserDetails loadedUser = customerService.loadUserByUsername(email);
+        String generatedToken = jwtUtils.generateToken(loadedUser);
+
+        return ResponseEntity.ok(new AuthenticationResponse("Successful authentication generated token is " + generatedToken));
 
     }
 

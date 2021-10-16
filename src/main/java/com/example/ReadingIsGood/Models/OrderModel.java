@@ -11,7 +11,7 @@ import java.util.*;
 public class OrderModel {
     @Id
     private String id;
-    private List<BooksModel> bookModel;
+    private List<BookModel> bookModel;
     private CustomerModel customerModel;
     private Date orderDate;
 
