@@ -1,16 +1,17 @@
-package com.example.ReadingIsGood;
+package com.example.ReadingIsGood.Models;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.math.BigDecimal;
+
 @Data
-@Document
-public class CustomerModel {
+@Document(collection = "books")
+public class BooksModel {
     @Id
     private String id;
     private String name;
-    private String surname;
-    private String email;
-    private String pass;
+    private BigDecimal price;
+    private Long stock;
 }

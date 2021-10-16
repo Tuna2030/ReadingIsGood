@@ -1,4 +1,4 @@
-package com.example.ReadingIsGood;
+package com.example.ReadingIsGood.Models;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.*;
 
 @Data
-@Document
+@Document(collection = "orders")
 public class OrderModel {
     @Id
     private String id;
