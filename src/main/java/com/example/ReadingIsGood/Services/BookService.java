@@ -17,9 +17,16 @@ public class BookService {
         return bookRepository.findAll();
     }
 
+    public BookModel findBookModelById(String bookId) {
+        return bookRepository.findBookModelById(bookId);
+    }
+
+    public void save(BookModel bookModel) {
+        bookRepository.save(bookModel);
+    }
+
     public BookModel getBookById(String bookId) {
         BookModel bookModel = bookRepository.findBookModelById(bookId);
-        if(bookModel == null) return null;
         return bookModel;
     }
 }

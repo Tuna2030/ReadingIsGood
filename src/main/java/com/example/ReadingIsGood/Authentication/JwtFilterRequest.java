@@ -2,6 +2,7 @@ package com.example.ReadingIsGood.Authentication;
 
 import com.example.ReadingIsGood.Services.CustomerService;
 import com.example.ReadingIsGood.Utils.JwtUtils;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,28 +28,35 @@ public class JwtFilterRequest extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String authHeader = request.getHeader("Authorization");
-        String username = null;
-        String jwtToken = null;
+        try {
+            String authHeader = request.getHeader("Authorization");
+            String email = null;
+            String jwtToken = null;
+            System.out.println("Test: " + request.getPathInfo() + "   " + request.getRequestURI() + "  " + request.getRequestURL());
 
-        if(authHeader != null && authHeader.startsWith("Bearer ")){
-            jwtToken = authHeader.substring(7);
-            username = jwtUtils.extractUsername(jwtToken);
-        }
+            if (authHeader != null && authHeader.startsWith("Bearer ")) {
+                jwtToken = authHeader.substring(7);
+                email = jwtUtils.extractUsername(jwtToken);
+            } else if (request.getRequestURI().equals("/login") || request.getRequestURI().equals("/register")) ;
+            else throw new RuntimeException("No token found.");
 
-        if(username != null && SecurityContextHolder.getContext().getAuthentication() == null){
+            if (email != null) {
 
-            UserDetails currentUserDetails = customerService.loadUserByUsername(username);
-            Boolean tokenValidated = jwtUtils.validateToken(jwtToken, currentUserDetails);
+                UserDetails currentUserDetails = customerService.loadUserByUsername(email);
+                Boolean tokenValidated = jwtUtils.validateToken(jwtToken, currentUserDetails);
 
-            if(tokenValidated){
-                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(currentUserDetails, null,currentUserDetails.getAuthorities());
-                usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+                if (tokenValidated) {
+                    UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(currentUserDetails, null, currentUserDetails.getAuthorities());
+                    usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+                }
             }
+            filterChain.doFilter(request, response);
+        } catch (RuntimeException e) {
+            response.setContentType("application/json");
+            response.getWriter().write(new ObjectMapper().writeValueAsString(e.getMessage()));
         }
 
-        filterChain.doFilter(request,response);
 
     }
 }

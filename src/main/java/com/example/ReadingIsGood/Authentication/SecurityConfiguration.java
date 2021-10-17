@@ -23,17 +23,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-       auth.userDetailsService(customerService);
+        auth.userDetailsService(customerService);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests().antMatchers("/login","/register").permitAll().anyRequest().authenticated();
+        http.csrf().disable().authorizeRequests().antMatchers("/login", "/register").permitAll().anyRequest().authenticated();
         http.addFilterBefore(jwtFilterRequest, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();
     }
 

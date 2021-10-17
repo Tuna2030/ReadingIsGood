@@ -1,0 +1,462 @@
+{
+	"info": {
+		"_postman_id": "d472a4e6-a73c-4e0e-8422-08737c1e86f3",
+		"name": "ReadingIsGood",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"kemal\",\r\n    \"email\": \"kemal@gmail.com\",\r\n    \"pass\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}{{host}}{{port}}/register",
+							"host": [
+								"{{protocol}}{{host}}{{port}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"tuna@gmail.com\",\r\n    \"pass\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}{{host}}{{port}}/login",
+							"host": [
+								"{{protocol}}{{host}}{{port}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Customers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0dW5hQGdtYWlsLmNvbSJ9.X19bLTqjed6p4TgvGyso0XbQm6FbQJEgtUj8QXcW25E",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}{{host}}{{port}}/api/v1/customers/all",
+							"host": [
+								"{{protocol}}{{host}}{{port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Customer Orders",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0dW5hQGdtYWlsLmNvbSJ9.X19bLTqjed6p4TgvGyso0XbQm6FbQJEgtUj8QXcW25E",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{protocol}}{{host}}{{port}}/api/v1/customers/orders?page=0&size=4",
+							"host": [
+								"{{protocol}}{{host}}{{port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"orders"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "Create Book",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0dW5hQGdtYWlsLmNvbSJ9.X19bLTqjed6p4TgvGyso0XbQm6FbQJEgtUj8QXcW25E",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Book of Hello World\",\r\n    \"price\": 15.5,\r\n    \"stock\" : 15\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}{{host}}{{port}}/api/v1/books/add",
+							"host": [
+								"{{protocol}}{{host}}{{port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"books",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Book Stock",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "1",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}{{host}}{{port}}/api/v1/books/616bdbd8ddfd3e0698565450",
+							"host": [
+								"{{protocol}}{{host}}{{port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"books",
+								"616bdbd8ddfd3e0698565450"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Books",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0dW5hQGdtYWlsLmNvbSJ9.X19bLTqjed6p4TgvGyso0XbQm6FbQJEgtUj8QXcW25E",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}{{host}}{{port}}/api/v1/books/all",
+							"host": [
+								"{{protocol}}{{host}}{{port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"books",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Get All Orders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0dW5hQGdtYWlsLmNvbSJ9.X19bLTqjed6p4TgvGyso0XbQm6FbQJEgtUj8QXcW25E",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}{{host}}{{port}}/api/v1/orders/all",
+							"host": [
+								"{{protocol}}{{host}}{{port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0dW5hQGdtYWlsLmNvbSJ9.X19bLTqjed6p4TgvGyso0XbQm6FbQJEgtUj8QXcW25E",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"616bdbe3ddfd3e0698565451\":\"4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}{{host}}{{port}}/api/v1/orders/create",
+							"host": [
+								"{{protocol}}{{host}}{{port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0dW5hQGdtYWlsLmNvbSJ9.X19bLTqjed6p4TgvGyso0XbQm6FbQJEgtUj8QXcW25E",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}{{host}}{{port}}/api/v1/orders/616be597d6f8482376bcfa1e",
+							"host": [
+								"{{protocol}}{{host}}{{port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"616be597d6f8482376bcfa1e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Orders By Date Interval",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0dW5hQGdtYWlsLmNvbSJ9.X19bLTqjed6p4TgvGyso0XbQm6FbQJEgtUj8QXcW25E",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}{{host}}{{port}}/api/v1/orders/filterByDate?startDate=2021-10-13&endDate=2021-10-20",
+							"host": [
+								"{{protocol}}{{host}}{{port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"filterByDate"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2021-10-13"
+								},
+								{
+									"key": "endDate",
+									"value": "2021-10-20"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Statistics",
+			"item": [
+				{
+					"name": "Customer Total Order Count",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0dW5hQGdtYWlsLmNvbSIsImV4cCI6MTYzNDQyMzkwOSwiaWF0IjoxNjM0Mzg3OTA5fQ.uv78nGenuR4BuhXK5Jojnsxc4mLqDAhgXjCjs4l3aWA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}{{host}}{{port}}/api/v1/statistics/count",
+							"host": [
+								"{{protocol}}{{host}}{{port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"statistics",
+								"count"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Customer All Purchased Orders Total Value",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Customer Count Purchased Book",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0dW5hQGdtYWlsLmNvbSJ9.X19bLTqjed6p4TgvGyso0XbQm6FbQJEgtUj8QXcW25E",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}{{host}}{{port}}/api/v1/statistics/totalCountBooks",
+							"host": [
+								"{{protocol}}{{host}}{{port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"statistics",
+								"totalCountBooks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Customer Monthly Statistics",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0dW5hQGdtYWlsLmNvbSJ9.X19bLTqjed6p4TgvGyso0XbQm6FbQJEgtUj8QXcW25E",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}{{host}}{{port}}/api/v1/statistics/monthlyStats",
+							"host": [
+								"{{protocol}}{{host}}{{port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"statistics",
+								"monthlyStats"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

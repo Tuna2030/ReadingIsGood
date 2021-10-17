@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,17 +31,16 @@ public class AuthenticationController {
     private JwtUtils jwtUtils;
 
     @PostMapping("/register")
-    private ResponseEntity<?> registerClient(@RequestBody AuthenticationRequest authenticationRequest){
+    private ResponseEntity<?> registerClient(@RequestBody AuthenticationRequest authenticationRequest) {
         String email = authenticationRequest.getEmail();
         String password = authenticationRequest.getPass();
         String name = authenticationRequest.getName();
 
-        CustomerModel customerModel = new CustomerModel(name,email,password);
+        CustomerModel customerModel = new CustomerModel(name, email, password);
 
-        try{
+        try {
             customerRepository.save(customerModel);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             return ResponseEntity.ok(new AuthenticationResponse("Error during registration " + email));
         }
 
@@ -50,14 +48,13 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    private ResponseEntity<?> authenticateClient(@RequestBody AuthenticationRequest authenticationRequest){
+    private ResponseEntity<?> authenticateClient(@RequestBody AuthenticationRequest authenticationRequest) {
         String email = authenticationRequest.getEmail();
         String password = authenticationRequest.getPass();
 
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.ok(new AuthenticationResponse("Error during authentication " + email));
         }
 
