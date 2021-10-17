@@ -15,9 +15,9 @@ public class BookModel {
     @Indexed(unique = true)
     private String name;
     private BigDecimal price;
-    private Long stock;
+    private Integer stock;
 
-    public BookModel(String name, BigDecimal price, Long stock) {
+    public BookModel(String name, BigDecimal price, Integer stock) {
         this.name = name;
         this.price = price;
         this.stock = stock;

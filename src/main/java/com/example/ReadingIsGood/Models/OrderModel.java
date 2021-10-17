@@ -11,8 +11,8 @@ import java.util.*;
 public class OrderModel {
     @Id
     private String id;
-    private List<BookModel> bookModel;
-    private CustomerModel customerModel;
+    private HashMap<String, Integer> bookList;
+    private String customerId;
     private Date orderDate;
 
 

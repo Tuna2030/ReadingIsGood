@@ -11,7 +11,7 @@ import java.util.Date;
 public class LogModel {
     @Id
     private String id;
-    private CustomerModel customerModel;
+    private String customerId;
     private Date logDate;
     private String logString;
 }

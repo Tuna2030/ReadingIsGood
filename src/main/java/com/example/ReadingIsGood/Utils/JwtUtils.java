@@ -23,13 +23,9 @@ public class JwtUtils {
     }
 
     private String createToken(Map<String, Object> claims, String subject){
-        Date now = new Date(System.currentTimeMillis());
-        Date until = new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10); //10 hours
         return Jwts.builder().
                 setClaims(claims).
                 setSubject(subject).
-                setIssuedAt(now).
-                setExpiration(until).
                 signWith(SignatureAlgorithm.HS256,SECRET_KEY).
                 compact();
     }
@@ -47,12 +43,8 @@ public class JwtUtils {
         return extractClaim(token, Claims::getSubject);
     }
 
-    public Date extractExpiration(String token){
-        return extractClaim(token, Claims::getExpiration);
-    }
-
     public Boolean isTokenExpired(String token){
-        return extractExpiration(token).before(new Date());
+        return false;
     }
 
 }
