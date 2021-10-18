@@ -28,7 +28,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests().antMatchers("/login", "/register").permitAll().anyRequest().authenticated();
+        http.csrf().disable().authorizeRequests().antMatchers("/login",
+                                                                        "/register",
+                                                                        "/v2/api-docs",
+                                                                        "/swagger-resources/**",
+                                                                        "/swagger-ui.html",
+                                                                        "/webjars/**").permitAll().anyRequest().authenticated();
         http.addFilterBefore(jwtFilterRequest, UsernamePasswordAuthenticationFilter.class);
     }
 

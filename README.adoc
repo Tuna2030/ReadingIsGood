@@ -1,0 +1,40 @@
+= ReadingIsGood
+
+ReadingIsGood is an online books retail firm which operates only on the Internet. Main target of ReadingIsGood is to deliver books from its one centralized warehouse to their customers within the same day. That is why stock consistency is the first priority for their vision operations.
+
+== Usages
+• Registering New Customer
+• Placing a new order
+• Tracking the stock of books
+• List all orders of the customer
+• Viewing the order details
+• Query Monthly Statistics
+
+== Tools
+• Java 11
+• Spring Boot 2.5.5
+    • Spring Security
+    • Spring Data MongoDB
+    • JWT (Bearer Token)
+• MongoDB
+• Docker
+• Swagger
+
+== Quick Start
+Before running the command below, please make sure you have Docker, Maven and JDK11 ready. The command automatically creates the docker images, mounts and runs the containers.
+[indent=0]
+----
+docker-compose up --build -d
+----
+
+=== PostMan Collection
+[indent=0]
+----
+/ReadingIsGood.postman_collection.json
+----
+
+== Swagger2
+[indent=0]
+----
+http://localhost:8080/swagger-ui.html
+----

@@ -36,7 +36,12 @@ public class JwtFilterRequest extends OncePerRequestFilter {
             if (authHeader != null && authHeader.startsWith("Bearer ")) {
                 jwtToken = authHeader.substring(7);
                 email = jwtUtils.extractUsername(jwtToken);
-            } else if (request.getRequestURI().equals("/login") || request.getRequestURI().equals("/register")) ;
+            } else if (request.getRequestURI().equals("/login") ||
+                    request.getRequestURI().equals("/register") ||
+                    request.getRequestURI().equals("/swagger-ui.html") ||
+                    request.getRequestURI().equals("/v2/api-docs") ||
+                    request.getRequestURI().startsWith("/swagger-resources") ||
+                    request.getRequestURI().startsWith("/webjars"));
             else throw new RuntimeException("No token found.");
 
             if (email != null) {
