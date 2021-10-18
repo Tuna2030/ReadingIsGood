@@ -11,25 +11,26 @@ ReadingIsGood is an online books retail firm which operates only on the Internet
 • Query Monthly Statistics
 
 == Tools
-• Java 11
-• Spring Boot 2.5.5
-• Spring Security
-• Spring Data MongoDB
-• JWT (Bearer Token)
-• MongoDB
-• Docker
-• Lombok
-• Swagger
+• https://www.oracle.com/technetwork/java/javase/downloads[Java 11]
+• https://spring.io/[Spring Boot 2.5.5]
+• https://spring.io/projects/spring-security#overview[Spring Security]
+• https://spring.io/projects/spring-data-mongodb[Spring Data MongoDB]
+• https://jwt.io/introduction[JWT (Bearer Token)]
+• https://www.mongodb.com/[MongoDB]
+• https://github.com/mongo-express/mongo-express[MongoExpress]
+• https://www.docker.com[Docker]
+• https://projectlombok.org/[Lombok]
+• https://swagger.io/[Swagger]
 
 == Quick Start
-Before running the command below in the terminal, please make sure you have Docker, Maven and JDK11 ready. The command automatically creates the docker images, mounts and runs the containers.
+Before running the command below in the terminal, please make sure you have https://www.docker.com/products/docker-desktop[Docker], https://maven.apache.org/download.cgi[Maven] and https://www.oracle.com/technetwork/java/javase/downloads[JDK11] ready. The command automatically creates, mounts and runs the docker containers.
 [indent=0]
 ----
 docker-compose up --build -d
 ----
 
 === PostMan Collection & Swagger2
-Rest Api can be easily tested with the postman collection json in the following directory or swagger HTML page after docker container run.
+Rest Api can be easily tested with the postman collection in the following directory or Swagger page after docker containers run.
 [indent=0]
 ----
 /ReadingIsGood.postman_collection.json
