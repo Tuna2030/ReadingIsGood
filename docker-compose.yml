@@ -1,7 +1,21 @@
 version: '3.8'
 services:
+  backend:
+    container_name: "restapi"
+    restart: 'always'
+    ports:
+      - "8080:8080"
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        JAR_FILE: readingisgood.jar
+    depends_on:
+      - mongodb
+    environment:
+      - SPRING_DATA_MONGODB_.HOST=mongodb
   mongodb:
-    container_name: mongodb
+    container_name: "mongodb"
     image: mongo
     ports:
       - '27017:27017'
@@ -12,7 +26,7 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=rootpass
   mongo-express:
     image: mongo-express
-    container_name: mongo-express
+    container_name: "mongo-express"
     restart: always
     ports:
       - 8081:8081
