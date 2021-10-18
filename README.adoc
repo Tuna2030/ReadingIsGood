@@ -21,20 +21,17 @@ ReadingIsGood is an online books retail firm which operates only on the Internet
 • Swagger
 
 == Quick Start
-Before running the command below, please make sure you have Docker, Maven and JDK11 ready. The command automatically creates the docker images, mounts and runs the containers.
+Before running the command below in the terminal, please make sure you have Docker, Maven and JDK11 ready. The command automatically creates the docker images, mounts and runs the containers.
 [indent=0]
 ----
 docker-compose up --build -d
 ----
 
-=== PostMan Collection
+=== PostMan Collection & Swagger2
+Rest Api can be easily tested with the postman collection json in the following directory or swagger HTML page after docker container run.
 [indent=0]
 ----
 /ReadingIsGood.postman_collection.json
-----
 
-== Swagger2
-[indent=0]
-----
 http://localhost:8080/swagger-ui.html
 ----
