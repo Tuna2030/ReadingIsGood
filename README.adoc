@@ -13,11 +13,12 @@ ReadingIsGood is an online books retail firm which operates only on the Internet
 == Tools
 • Java 11
 • Spring Boot 2.5.5
-    • Spring Security
-    • Spring Data MongoDB
-    • JWT (Bearer Token)
+• Spring Security
+• Spring Data MongoDB
+• JWT (Bearer Token)
 • MongoDB
 • Docker
+• Lombok
 • Swagger
 
 == Quick Start
