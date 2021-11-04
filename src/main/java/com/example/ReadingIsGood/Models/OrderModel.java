@@ -20,5 +20,4 @@ public class OrderModel {
     private BigDecimal orderAmount;
     private String status;
 
-
 }

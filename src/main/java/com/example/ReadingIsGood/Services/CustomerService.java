@@ -18,8 +18,10 @@ import java.util.List;
 public class CustomerService implements UserDetailsService {
 
     private final CustomerRepository customerRepository;
+    private final LogServices logServices;
 
-    public List<CustomerModel> getAllCustomers() {
+    public List<CustomerModel> getAllCustomers(Authentication principal) {
+        logServices.saveLog(principal, "All customers listed.");
         return customerRepository.findAll();
     }
 

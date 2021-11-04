@@ -2,9 +2,7 @@ package com.example.ReadingIsGood.Controllers;
 
 import com.example.ReadingIsGood.Models.CustomerModel;
 import com.example.ReadingIsGood.Models.OrderModel;
-import com.example.ReadingIsGood.Repositories.CustomerRepository;
 import com.example.ReadingIsGood.Services.CustomerService;
-import com.example.ReadingIsGood.Services.LogServices;
 import com.example.ReadingIsGood.Services.OrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -22,22 +20,17 @@ import java.util.List;
 public class CustomerController {
     private final CustomerService customerService;
     private final OrderService orderService;
-    private final CustomerRepository customerRepository;
-    private final LogServices logServices;
+
 
     @GetMapping("/all")
-    public List<CustomerModel> fetchAllCustomers(Authentication principal) {
-        logServices.saveLog(principal, "All customers listed.");
-        return customerService.getAllCustomers();
+    public List<CustomerModel> getAllCustomers(Authentication principal) {
+        return customerService.getAllCustomers(principal);
     }
 
     @GetMapping("/orders")
-    public List<OrderModel> fetchAllOrders(Authentication principal,
+    public List<OrderModel> getAllOrders(Authentication principal,
                                            @RequestParam(value = "page", required = false, defaultValue = "0") int page,
                                            @RequestParam(value = "size", required = false, defaultValue = "5") int size) {
-        CustomerModel customerModel = customerRepository.findCustomerModelByEmail(principal.getName());
-        List<OrderModel> orderModelList = orderService.getAllCustomerOrdersPagable(customerModel.getId(), PageRequest.of(page, size));
-        logServices.saveLog(principal, "Customer orders listed.");
-        return orderModelList;
+        return orderService.getAllCustomerOrdersPageable(principal, PageRequest.of(page, size));
     }
 }
